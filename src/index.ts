@@ -1,6 +1,6 @@
-import {solveEntryTask} from './entry-task'
+import {entryTask} from './entry-task'
 
 (async function main() {
-    solveEntryTask()
+    // entryTask()
 })()
 

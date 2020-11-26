@@ -1,28 +1,26 @@
 import path from 'path'
 
 import { decodeRailFence } from '../algorithms'
-import { FREQUENT_WORDS_RU } from '../statistic'
+import { calcFrequentWordsThreshold, countFrequentWords } from '../statistics'
 import { readFile, writeFile } from '../utils'
 
-const FREQUENT_WORDS_REGEXP = FREQUENT_WORDS_RU
-    .map(word => new RegExp(`\\s${word}[\\s\\.\\,\\!\\?]`, 'ig'))
+const findTextRailFence = (
+    encodedText: string,
+    step = 2, 
+    frequentWordsThreshold = calcFrequentWordsThreshold(encodedText)
+): string => {
+    if (step > 10) {
+        return '[Not decoded]'
+    }
 
-const countFrequentWords = (text: string) => FREQUENT_WORDS_REGEXP
-    .reduce((count, regexp) => count + (text.match(regexp)?.length ?? 0), 0)
+    const decodedText = decodeRailFence(encodedText, step)
+    return countFrequentWords(decodedText, 'ru') > frequentWordsThreshold ? 
+        decodedText :
+        findTextRailFence(encodedText, ++step, frequentWordsThreshold)
+}
 
-
-export const solveEntryTask = async () => {
+export const entryTask = async () => {
     const encodedMessage = await readFile(path.join(__dirname, 'task.txt'))
-    let decodedMessage = '[Not decoded]'
-
-    let step = 2
-    do {
-        const tempDecodedMessage = decodeRailFence(encodedMessage, step++)
-        if (countFrequentWords(tempDecodedMessage) > encodedMessage.length * 0.02) {
-            decodedMessage = tempDecodedMessage
-            break
-        }
-    } while (step < 10)
-
+    const decodedMessage = findTextRailFence(encodedMessage)
     await writeFile(path.join(__dirname, 'solution.txt'), decodedMessage)
-} 
+}
