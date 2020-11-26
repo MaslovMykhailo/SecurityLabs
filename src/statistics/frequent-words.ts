@@ -85,6 +85,3 @@ export const countFrequentWords = (
     language: Language
 ) => FREQUENT_WORDS_REGEX[language]
     .reduce((count, regexp) => count + (text.match(regexp)?.length ?? 0), 0)
-
-export const calcFrequentWordsThreshold = (text: string) => 
-    text.length * 0.02

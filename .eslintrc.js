@@ -29,9 +29,10 @@ module.exports = {
         'functions': 'never'
       }
     ],
+    'indent': ['error', 4],
     'semi': ['error', 'never'],
     'eol-last': ['error', 'always'],
-    'indent': ['error', 4],
+    'object-curly-spacing': ['error', 'never'],
     '@typescript-eslint/explicit-function-return-type': 'off'
   }
 }
