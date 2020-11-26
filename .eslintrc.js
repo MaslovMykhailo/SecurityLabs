@@ -31,6 +31,7 @@ module.exports = {
     ],
     'indent': ['error', 4],
     'semi': ['error', 'never'],
+    'quotes': ['error', 'single'],
     'eol-last': ['error', 'always'],
     'object-curly-spacing': ['error', 'never'],
     '@typescript-eslint/explicit-function-return-type': 'off'
