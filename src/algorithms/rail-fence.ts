@@ -23,9 +23,9 @@ export const decodeRailFence = (cipher: string, step: number) => {
         return cipher
     }
 
-    let rails: string[][] = new Array(step)
+    let rails: string[][] = Array(step)
         .fill(null)
-        .map(() => new Array(cipher.length).fill(''))
+        .map(() => Array(cipher.length).fill(''))
         
     let direction: Direction
 

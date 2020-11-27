@@ -1,6 +1,6 @@
 import {getMostFrequentLetters} from '../statistics'
 
-import {countSymbolsFrequency} from './count-symbols-frequency'
+import {countSymbolsFrequencyPercent} from './count-symbols-frequency'
 
 const findClosestFrequency = (
     frequentSymbolsMap: Record<string, number>,
@@ -22,7 +22,7 @@ export const findFrequentLettersCompliance = (
     frequentLettersMap: Record<string, number>,
     count = 3
 ) => {
-    const symbolsFrequency = countSymbolsFrequency(text)
+    const symbolsFrequency = countSymbolsFrequencyPercent(text)
     const mostFrequentLetters = getMostFrequentLetters(frequentLettersMap, count)
     return mostFrequentLetters
         .map(([, targetFrequency]) => findClosestFrequency(symbolsFrequency, targetFrequency))

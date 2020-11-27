@@ -1,3 +1,5 @@
 export * from './rail-fence'
+export * from './xor'
 export * from './count-symbols-frequency'
 export * from './find-frequent-letters-compliance'
+export * from './calc-index-of-coincidence'

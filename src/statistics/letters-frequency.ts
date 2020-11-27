@@ -1,4 +1,4 @@
-export const LETTER_FREQUENCY_EN = {
+export const LETTER_FREQUENCY_PERCENT_EN = {
     'a': 8.2389258,
     'b': 1.5051398,
     'c': 2.8065007,
