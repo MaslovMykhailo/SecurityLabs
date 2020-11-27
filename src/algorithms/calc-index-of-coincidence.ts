@@ -18,10 +18,17 @@ export const calcIndexOfCoincidenceByKeyLength = (
 ) => Array(maxStep)
     .fill(null)
     .map((_, step) => getEachNSubstrings(text, step + 1))
-    .map(subtexts => subtexts
-        .map(calcIndexOfCoincidence)
-        .reduce(
-            (sum, indexOfCoincidence) => sum + indexOfCoincidence,
-            0
-        ) / subtexts.length
+    .reduce<Record<number, number>>(
+        (map, subtexts) => {
+            const averageIndexOfCoincidence = subtexts
+                .map(calcIndexOfCoincidence)
+                .reduce(
+                    (sum, indexOfCoincidence) => sum + indexOfCoincidence,
+                    0
+                ) / subtexts.length
+
+            map[subtexts.length] = averageIndexOfCoincidence    
+            return map
+        },
+        {}
     )

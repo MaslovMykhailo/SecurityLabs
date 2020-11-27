@@ -1,3 +1,11 @@
+export const countSymbolFrequency = (
+    symbols: string[],
+    symbol: string
+) => symbols.reduce(
+    (count, s) => count + Number(s === symbol),
+    0
+)
+
 export const countSymbolsFrequency = (text: string) => {
     const symbols = text.split('')
     return symbols.reduce<Record<string, number>>(
@@ -5,12 +13,8 @@ export const countSymbolsFrequency = (text: string) => {
             if (frequencyMap[symbol]) {
                 return frequencyMap
             }
-
-            frequencyMap[symbol] = symbols.reduce(
-                (count, s) => count + Number(s === symbol),
-                0
-            )
             
+            frequencyMap[symbol] = countSymbolFrequency(symbols, symbol)
             return frequencyMap
         }, 
         {}

@@ -1,6 +1,6 @@
 export const INDEX_OF_COINCIDENCE = {
-    'en': 0.067,
-    'ru': 0.054
+    'EN': 0.067,
+    'RU': 0.054
 }
 
 export const findClosestIndexOfCoincidence = (

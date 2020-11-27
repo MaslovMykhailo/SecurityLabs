@@ -3,8 +3,8 @@ import {toByte} from '../utils'
 
 import {findFrequentLettersCompliance} from './find-frequent-letters-compliance'
 
-export const encryptSingleByteXORCipher = (text: string, key: string) => {
-    const byteKey = toByte(key)
+export const applySingleByteXORCipher = (text: string, key: string | number) => {
+    const byteKey = typeof key === 'number' ? key % 255 : toByte(key)
     const cipherText = Array.from(Buffer.from(text))
         .map(byte => byte ^ byteKey)
     return String.fromCharCode(...cipherText)
@@ -21,9 +21,7 @@ export const decryptSingleByteXORCipher = (
     .map(([letter, symbol]) => toByte(letter) ^ toByte(symbol))
     .map(byteKey => ({
         key: String.fromCharCode(byteKey),
-        text: String.fromCharCode(
-            ...Array
-                .from(Buffer.from(cipherText))
-                .map(byte => byte ^ byteKey)
-        )
+        text: applySingleByteXORCipher(cipherText, byteKey)
     }))
+
+
