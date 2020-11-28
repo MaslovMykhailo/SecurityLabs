@@ -1,6 +1,6 @@
 import {LETTER_FREQUENCY_PERCENT_EN} from '../statistics'
 
-import {countSymbolFrequency} from './count-symbols-frequency'
+import {countSymbolFrequency} from './symbols-frequency'
 import {applySingleByteXORCipher} from './xor'
 
 export const calcChiSquareStatisticForXOR = (text: string) => Array(256)

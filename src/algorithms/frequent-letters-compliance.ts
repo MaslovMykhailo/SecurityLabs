@@ -1,6 +1,6 @@
 import {getMostFrequentLetters} from '../statistics'
 
-import {countSymbolsFrequencyPercent} from './count-symbols-frequency'
+import {countSymbolsFrequencyPercent} from './symbols-frequency'
 
 const findClosestFrequency = (
     frequentSymbolsMap: Record<string, number>,

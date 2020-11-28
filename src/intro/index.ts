@@ -1,7 +1,7 @@
 import path from 'path'
 
-import {countFrequentWords} from '../statistics'
-import {readFile, writeFile} from "../utils"
+import {countFrequentWords, Language} from '../statistics'
+import {readFile, writeFile} from '../utils'
 
 const findBase64Solution = (
     encodedText: string,
@@ -9,7 +9,7 @@ const findBase64Solution = (
 ): string => {
     const buffer = Buffer.from(encodedText, 'base64')
     const decodedText = buffer.toString('utf8')
-    return countFrequentWords(decodedText, 'en') > frequentWordsThreshold ?
+    return countFrequentWords(decodedText, Language.EN) > frequentWordsThreshold ?
         decodedText : 
         findBase64Solution(decodedText, frequentWordsThreshold)
 }

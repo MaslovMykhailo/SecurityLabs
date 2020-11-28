@@ -1,7 +1,7 @@
 import path from 'path'
 
 import {applySingleByteXORCipher, calcIndexOfCoincidenceByKeyLength, findBestChiSquareStatisticForXOR} from '../../algorithms'
-import {findClosestIndexOfCoincidence, INDEX_OF_COINCIDENCE} from '../../statistics'
+import {findClosestIndexOfCoincidence, Language} from '../../statistics'
 import {getEachNSubstrings, hexToChars, readFile, writeFile} from '../../utils'
 
 export const task3 = async () => {
@@ -9,7 +9,7 @@ export const task3 = async () => {
     const cipherText = hexToChars(hexCipherText)
 
     const indexesOfCoincidence = calcIndexOfCoincidenceByKeyLength(cipherText)
-    const closestIndexes = findClosestIndexOfCoincidence(indexesOfCoincidence, INDEX_OF_COINCIDENCE.EN)      
+    const closestIndexes = findClosestIndexOfCoincidence(indexesOfCoincidence, Language.EN)      
 
     const [[bestSmallerKeyLength]] = closestIndexes
         .slice(0, 5)

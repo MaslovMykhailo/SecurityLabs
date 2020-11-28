@@ -23,9 +23,14 @@ export const countSymbolsFrequency = (text: string) => {
 
 export const countSymbolsFrequencyPercent = (text: string) => {
     const frequencyMap = countSymbolsFrequency(text)
-    Object.keys(frequencyMap).forEach(symbol => {
-        frequencyMap[symbol] = (frequencyMap[symbol] / text.length) * 100
-    })
-    return frequencyMap
+    return Object
+        .keys(frequencyMap)
+        .reduce(
+            (map, symbol) => {
+                map[symbol] = (map[symbol] / text.length) * 100
+                return map
+            },
+            frequencyMap
+        )
 }
     

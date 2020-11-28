@@ -1,7 +1,7 @@
 import path from 'path'
 
 import {decodeRailFence} from '../algorithms'
-import {countFrequentWords} from '../statistics'
+import {countFrequentWords, Language} from '../statistics'
 import {readFile, writeFile} from '../utils'
 
 const findRailFenceSolution = (
@@ -14,7 +14,7 @@ const findRailFenceSolution = (
     }
 
     const decodedText = decodeRailFence(encodedText, step)
-    return countFrequentWords(decodedText, 'ru') > frequentWordsThreshold ? 
+    return countFrequentWords(decodedText, Language.RU) > frequentWordsThreshold ? 
         decodedText :
         findRailFenceSolution(encodedText, ++step, frequentWordsThreshold)
 }

@@ -9,18 +9,6 @@ export const getEachNSubstrings = (string: string, n: number) => string
     )
     .map(substring => substring.join(''))
 
-
-// string
-//     .split('')
-//     .reduce<string[]>(
-//         (charArray, char, index) => [
-//             ...charArray,
-//             ...(index % n === 1 ? [char] : [])
-//         ], 
-//         []
-//     )
-//     .join('')
-
 export const shiftString = (string: string, shift: number) => {
     const charArray = string.split('')
     return [...charArray.slice(shift), ...charArray.slice(0, shift)].join('')

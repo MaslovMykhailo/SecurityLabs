@@ -1,6 +1,6 @@
 import {getEachNSubstrings} from '../utils'
 
-import {countSymbolsFrequency} from './count-symbols-frequency'
+import {countSymbolsFrequency} from './symbols-frequency'
 
 export const calcIndexOfCoincidence = (text: string) => Object
     .values(countSymbolsFrequency(text))

@@ -3,8 +3,10 @@ import {intro} from './intro'
 import {lab1} from './lab1'
 
 (async function main() {
-    // entryTask()
-    // intro()
-    lab1()
+    await Promise.all([
+        entryTask(),
+        intro(),
+        lab1()
+    ])
 })()
 

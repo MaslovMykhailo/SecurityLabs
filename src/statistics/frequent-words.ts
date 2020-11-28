@@ -1,4 +1,4 @@
-export type Language = 'en' | 'ru'
+import {Language} from './language'
 
 export const FREQUENT_WORDS_RU = [
     'и',
@@ -68,16 +68,16 @@ export const FREQUENT_WORDS_EN = [
 ]
 
 export const FREQUENT_WORDS: Record<Language, string[]> = {
-    ru: FREQUENT_WORDS_RU,
-    en: FREQUENT_WORDS_EN
+    [Language.EN]: FREQUENT_WORDS_EN,
+    [Language.RU]: FREQUENT_WORDS_RU
 }
 
 const createWordRegex = (word: string) => 
     new RegExp(`\\s${word}[\\s\\.\\,\\!\\?]`, 'ig')
 
 export const FREQUENT_WORDS_REGEX: Record<Language, RegExp[]> = {
-    ru: FREQUENT_WORDS_RU.map(createWordRegex),
-    en: FREQUENT_WORDS_EN.map(createWordRegex)
+    [Language.EN]: FREQUENT_WORDS_EN.map(createWordRegex),
+    [Language.RU]: FREQUENT_WORDS_RU.map(createWordRegex)
 }
 
 export const countFrequentWords = (
