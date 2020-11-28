@@ -14,3 +14,5 @@ export const shiftString = (string: string, shift: number) => {
     return [...charArray.slice(shift), ...charArray.slice(0, shift)].join('')
 }
     
+export const toChars = (string: string | string[]): string[] => 
+    Array.isArray(string) ? string.flatMap(toChars) : string.split('')
