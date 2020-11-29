@@ -35,3 +35,16 @@ export const writeFile = (
         }
     )    
 )
+
+export const getDirFiles = (path: string) => new Promise<string[]>(
+    (resolve, reject) => fs.readdir(
+        path, 
+        (error, files) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(files)
+            }
+        }
+    )
+)
