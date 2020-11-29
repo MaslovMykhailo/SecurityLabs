@@ -2,13 +2,13 @@ import path from 'path'
 
 import {getDirFiles, readFile} from '../../utils'
 
-export type NGram = Record<string, number>
+export type NGramRecords = Record<string, number>
 
-class NGrams {
+export class NGrams {
 
     private nGrams = Array(4)
         .fill(null)
-        .reduce<Record<number, NGram>>(
+        .reduce<Record<number, NGramRecords>>(
             (nGrams, _, index) => {
                 nGrams[index + 1] = {}
                 return nGrams
@@ -49,6 +49,29 @@ class NGrams {
     }
 
     public getNGrams = (n: number) => this.nGrams[n]
+
+    public calculateNGrams = (text: string, n: number) => {
+        const nGrams: NGramRecords = {}
+        let totalNGramCount = 0
+
+        for (let index = 0; index < text.length - n - 1; index++) {
+            const nGram = text.slice(index, index + n)
+            const nGramCount = text.match(new RegExp(nGram, 'ig'))?.length ?? 0
+
+            totalNGramCount += nGramCount
+            nGrams[nGram] = nGramCount
+        }
+
+        return Object
+            .entries(nGrams)
+            .reduce(
+                (records, [nGram, nGramCount]) => {
+                    records[nGram] = nGramCount / totalNGramCount * 100
+                    return records
+                },
+                nGrams
+            )
+    }
 
 }
 

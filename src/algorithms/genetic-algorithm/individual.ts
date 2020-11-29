@@ -1,11 +1,16 @@
+import {GeneticAlgorithmParameters} from './genetic-algorythm-parameters'
+
 export abstract class Individual<T> {
 
+    protected fitness: number
+
     constructor(
-        private chromosome: T, 
-        private fitness: number
+        protected chromosome: T,
+        protected parameters: GeneticAlgorithmParameters 
     ) {
         this.chromosome = chromosome
-        this.fitness = this.calculateFitness()
+        this.parameters = parameters
+        this.fitness = 0
     }
 
     public getChromosome = () => this.chromosome
@@ -17,9 +22,9 @@ export abstract class Individual<T> {
     abstract mate(individual: Individual<T>): Individual<T>
 
     public compareTo = (individual: Individual<T>) => 
-        Individual.compare(this, individual)
+        Individual.compare(individual, this)
 
     public static compare = <T>(individual1: Individual<T>, individual2: Individual<T>) =>
-        individual1.getFitness() - individual2.getFitness();
+        individual2.getFitness() - individual1.getFitness();
 
 }
