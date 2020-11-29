@@ -14,8 +14,8 @@ export const calcIndexOfCoincidence = (text: string) => Object
 
 export const calcIndexOfCoincidenceByKeyLength = (
     text: string,
-    maxStep = 25
-) => Array(maxStep)
+    maxKeyLength = 25
+) => Array(maxKeyLength)
     .fill(null)
     .map((_, step) => getEachNSubstrings(text, step + 1))
     .reduce<Record<number, number>>(
