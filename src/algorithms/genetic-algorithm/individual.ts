@@ -17,9 +17,12 @@ export abstract class Individual<T> {
 
     public getFitness = () => this.fitness
 
-    abstract calculateFitness(): number
+    public abstract calculateFitness(): number
 
-    abstract mate(individual: Individual<T>): Individual<T>
+    public recalculateFitness = () => 
+        (this.fitness = this.calculateFitness())
+
+    public abstract mate(individual: Individual<T>): Individual<T>
 
     public compareTo = (individual: Individual<T>) => 
         Individual.compare(individual, this)

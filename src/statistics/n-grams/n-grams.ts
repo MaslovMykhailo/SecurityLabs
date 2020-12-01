@@ -1,20 +1,19 @@
 import path from 'path'
 
-import {getDirFiles, readFile} from '../../utils'
+import {getDirFiles, readFile, writeFile} from '../../utils'
+
+import {monograms, bigrams,  quadgrams, trigrams} from './records'
 
 export type NGramRecords = Record<string, number>
 
 export class NGrams {
 
-    private nGrams = Array(4)
-        .fill(null)
-        .reduce<Record<number, NGramRecords>>(
-            (nGrams, _, index) => {
-                nGrams[index + 1] = {}
-                return nGrams
-            },
-            {}
-        )
+    private nGrams: NGramRecords[] = [
+        monograms,
+        bigrams,
+        trigrams,
+        quadgrams
+    ]
 
     public prepare = async () => {
         const nGramFiles = await getDirFiles(path.join(__dirname, 'source'))
@@ -46,9 +45,17 @@ export class NGrams {
             },
             this.nGrams
         )
+
+        await Promise.all(Object
+            .entries(this.nGrams)
+            .map(([nGramPeriod, nGramRecords]) => writeFile(
+                path.join(__dirname, 'records', `records-${nGramPeriod}n.json`),
+                JSON.stringify(nGramRecords, undefined, 4)
+            ))
+        ) 
     }
 
-    public getNGrams = (n: number) => this.nGrams[n]
+    public getNGrams = (n: number) => this.nGrams[n - 1]
 
     public calculateNGrams = (text: string, n: number) => {
         const nGrams: NGramRecords = {}

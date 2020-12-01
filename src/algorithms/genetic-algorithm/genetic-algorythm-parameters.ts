@@ -16,7 +16,14 @@ const GENETIC_ALGORITHM_DEFAULT_PARAMETERS: GeneticAlgorithmParameters = {
 
 export class GeneticAlgorithmParametersBuilder {
     
-    private parameters = {...GENETIC_ALGORITHM_DEFAULT_PARAMETERS}
+    private parameters: GeneticAlgorithmParameters
+
+    constructor(parameters: Partial<GeneticAlgorithmParameters> = {}) {
+        this.parameters = {
+            ...GENETIC_ALGORITHM_DEFAULT_PARAMETERS,
+            ...parameters
+        }
+    }
 
     public setGenerationNumber = (generationNumber: number) => {
         this.parameters.generationNumber = generationNumber

@@ -1,0 +1,35 @@
+link -> https://docs.google.com/document/d/1Xctuzuv_dx3xgaJpVxXW03sx01A5alGxtd2XD3CtctI
+
+4. Human-like password generator
+
+The first team to write “Волк волку волк” in our chat will receive +1 score to their grade.
+
+Do not use this generator to create passwords. This is not a secure generator (obviously), but a tool for very basic security checks of password hashing.
+
+The purpose of this task is to acquaint you with the way real people generate passwords. You cannot enforce everyone to use secure random generators. But you still need to secure their accounts/information/etc.
+
+Upload your results to a public github repository.
+
+Part 1.
+
+Create a simple application that generates passwords “just like humans do”:
+Search for statistics of top 25/100 passwords. Your app should generate passwords from this list say 5-10% of the time. You may want to research what is the exact percentage in real leaked passwords databases. For the purpose of this task it’s not necessary but encouraged.
+Search for 100k-1M most common passwords lists. Your app should generate passwords from this list 50-90% of the time.
+Make 1-5% of passwords really random. Make length/symbol space still bearable for people to remember though.
+For the rest you are free to choose options regarding length/symbols/generation scheme, but still try to make it look like passwords that humans would create. You may want to combine words, add numbers to the end of words, transliterate words, replace letters with numbers etc.
+Your app should create a bunch of these passwords at a time.
+Now choose 2-3 hashing schemes of different security levels. md5, sha-1 + salt, argon2i, bcrypt, you name it. For each scheme generate a bunch of passwords (100k-1M) and create a csv file with hashes (and salts) only. Make it public for everyone in class.
+Write a short report on how you create your passwords. You may choose to omit describing hashing scheme to make part 2 more challenging. You will be graded based on your report.
+
+Part 2.
+
+Take anyone’s but your csv file with hashes. 
+Make yourself familiar with a tool like hashcat or any similar. In short it is a software used to find hash preimages.
+Try dictionary search, bruteforce or anything else you heard about in lectures. Note how much time your search will take. Also note how effective each method is.
+Write a short report on how many passwords you managed to recover. What kind of passwords are those (dictionary, combined, random etc). What hashing scheme you found to be pretty strong and why. What attacks you used and what appears to be effective. Include a link to the input file you used. 
+Write some recommendations based on your own experience with this tak on:
+which hashing scheme one should use in real life applications
+which rules should one enforce on user passwords
+anything else you find important
+Be prepared to rep
+You will be graded based on your report

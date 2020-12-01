@@ -12,7 +12,7 @@ export class SubstitutionIndividual extends Individual<string[]> {
     ) {
         super(chromosome, parameters)
         this.context = context
-        this.fitness = this.calculateFitness()
+        this.recalculateFitness()
     }
 
     public calculateFitness = () => {

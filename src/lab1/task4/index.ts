@@ -1,6 +1,6 @@
 import path from 'path'
 
-import {applySubstitutionCipher, GeneticAlgorithmParametersBuilder, SubstitutionContext, SubstitutionGeneticAlgorithm} from '../../algorithms'
+import {createSubstitutionCipherApplier, GeneticAlgorithmParametersBuilder, SubstitutionContext, SubstitutionGeneticAlgorithm} from '../../algorithms'
 import {nGrams} from '../../statistics'
 import {generateEnglishAlphabet, readFile, writeFile} from '../../utils'
 
@@ -10,10 +10,10 @@ export const task4 = async () => {
     const alphabet = generateEnglishAlphabet()
     const key = new SubstitutionGeneticAlgorithm(
         new GeneticAlgorithmParametersBuilder()
-            .setGenerationNumber(2500)
+            .setGenerationNumber(500)
             .setPopulationNumber(250)
-            .setCrossover(0.65)
-            .setMutation(0.15)
+            .setCrossover(0.6)
+            .setMutation(0.3)
             .setElitism(0.55)
             .getParameters(),
         new SubstitutionContext(
@@ -24,10 +24,10 @@ export const task4 = async () => {
         )
     )
         .solve()
-        .getChromosome()
         .join('')
-        
 
-    const solution = applySubstitutionCipher(cipherText, alphabet, key)
-    await writeFile(path.join(__dirname, 'solution.txt'), `KEY: ${key}\n${solution}`)
+    const applySubstitutionCipher = createSubstitutionCipherApplier(alphabet, key)    
+    const solution = applySubstitutionCipher(cipherText)
+    
+    return writeFile(path.join(__dirname, 'solution-.txt'), `KEY: ${key}\n${solution}`)
 }

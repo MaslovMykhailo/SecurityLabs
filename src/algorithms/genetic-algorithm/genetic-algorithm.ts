@@ -8,7 +8,7 @@ export abstract class GeneticAlgorithm<T> {
         this.parameters = parameters
     }
 
-    abstract solve(): Individual<T> 
+    public abstract solve(): T
 
     public tournamentSelection = (population: Population<T>) => {
         const fittestPopulation = this.getFittestPopulation(population)
@@ -26,6 +26,16 @@ export abstract class GeneticAlgorithm<T> {
             })
         return [...children, ...population]
     } 
+
+    public nextGeneration = (population: Population<T>) => {
+        const fittestPopulation = this.tournamentSelection(population)
+        const childCount = population.length - fittestPopulation.length
+        return this.crossover(fittestPopulation, childCount).sort(Individual.compare)
+    }
+
+    public recalculateFitness = (population: Population<T>) => {
+        population.forEach(individual => individual.recalculateFitness())
+    }
 
     public getFittestPopulation = (population: Population<T>) => 
         [...population].sort(Individual.compare)
