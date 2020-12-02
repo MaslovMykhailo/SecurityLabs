@@ -1,0 +1,8 @@
+1.  Linear congruential generator. {Mode} in link is “Lcg”. Numbers are generated like this:
+public int Next()
+{
+	_last = (a * _last + c) % m; // m is 2^32
+	return (int) _last;
+}
+The first one who writes “a” and “c” values to group chat will get +1 scores.
+Lesson to learn: just never use LCG for anything.

@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "@types/node": "^13.13.4",
+    "@types/node-fetch": "^2.5.7",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",
@@ -24,5 +26,9 @@
     "typescript": "^3.8.3"
   },
   "author": "Mykhailo Maslov <maslov.mikhail2000@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "uuid": "^8.3.1"
+  }
 }
