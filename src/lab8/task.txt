@@ -1,0 +1,16 @@
+link -> https://docs.google.com/document/d/1H5SV5J34gAznsmafi8cuKB0E_plKU5UT92HeRCuWa9o
+
+8. Remote Code Execution
+
+The first one (team or individual) who writes “ололо c166fc1c3117d0d7db4fcffaac4c79e8f54f462a” in chat will receive an additional +1 score. To receive +1 the next one should write “ололо” + SHA1-hash of “ололо c166fc1c3117d0d7db4fcffaac4c79e8f54f462a” in chat. The next one should write SHA1 of the previous message with hash (becoming “ололо ” + sha1(“ололо ” + sha1(...))). And so forth up to 5 people. Enjoy the confusion in the chat.
+
+In this task you should complete https://exploit-exercises.lains.space/protostar/ exercises which will introduce you to RCE exploits. The required parts are Stack0 - Stack6 (but not stack7) and Final0. Every part maps to one part of this task, 8 total.
+
+Go to https://drive.google.com/drive/folders/0B9RbZkKdRR8qbkJjQ2VXbWNlQzg and download the iso file provided. It contains a bootable cd image with an OS where security measures like ASLR are disabled.
+Use vmware player, virtual box or any other emulator to boot from this iso. You may of course try to burn the real CD if you like.
+Head to http://exploit-exercises.lains.space/protostar/stack0/ and repeat everything you saw in lectures.
+Do the same with every other exercise.
+
+There are a LOT of guides online on how to solve every one of these exercises. Go on, try it, but then you will miss out on lots of emotions from doing everything by yourself. You may want to check the guides when you are stuck on some exercise for more than an hour or so.
+
+This task will be graded based on your live demonstration.

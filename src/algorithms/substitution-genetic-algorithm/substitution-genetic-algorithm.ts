@@ -1,5 +1,5 @@
 import {shuffle} from '../../utils'
-import {GeneticAlgorithm, GeneticAlgorithmParameters, Individual} from '../genetic-algorithm'
+import {GeneticAlgorithm, GeneticAlgorithmParameters} from '../genetic-algorithm'
 
 import {SubstitutionContext} from './substitution-context'
 import {SubstitutionIndividual} from './substitution-individual'
