@@ -1,9 +1,11 @@
+import path from 'path'
+
 import {MersenneTwister} from '../../algorithms'
-import {OnlineCasino, PlayMode} from '../common'
+import {writeFile} from '../../utils'
+import {collectionDesiredAmountOfMoney, OnlineCasino, PlayMode} from '../common'
 
 export const task2 = async () => {
     let amountOfMoney = 0
-    const desiredAmountOfMoney = 1000000
 
     const {id: accountId} = await OnlineCasino.createAccount()
 
@@ -19,20 +21,14 @@ export const task2 = async () => {
         amountOfMoney = money
     }
 
-    const mt = MersenneTwister.fromMT(mtStates)
+    const mt = MersenneTwister.fromMTStates(mtStates)
 
-    let lastMessage = 'Empty message'
+    const solution = await collectionDesiredAmountOfMoney({
+        accountId,
+        mode: PlayMode.Mt,
+        initialAmountOfMoney: amountOfMoney,
+        getNextNumber: () => mt.next()
+    })
 
-    while (amountOfMoney < desiredAmountOfMoney) {
-        const {message, account: {money}} = await OnlineCasino.makeBet({
-            accountId,
-            mode: PlayMode.Mt,
-            money: Math.round(amountOfMoney / 2),
-            number: Number(mt.next())
-        })
-        amountOfMoney = money
-        lastMessage = message
-    }
-
-    console.log(lastMessage)
+    await writeFile(path.join(__dirname, 'solution.txt'), solution)
 }

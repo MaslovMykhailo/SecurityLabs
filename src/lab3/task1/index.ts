@@ -1,14 +1,16 @@
+import path from 'path'
+
 import {calculateUnknownMultiplier, LCG} from '../../algorithms'
-import {OnlineCasino, PlayMode} from '../common'
+import {writeFile} from '../../utils'
+import {collectionDesiredAmountOfMoney, OnlineCasino, PlayMode} from '../common'
 
 export const task1 = async () => {
     let amountOfMoney = 0
-    const desiredAmountOfMoney = 1000000
 
     const {id: accountId} = await OnlineCasino.createAccount()
 
     const states: bigint[] = []
-    while (states.length < 5) {
+    while (states.length < 10) {
         const {realNumber, account: {money}} = await OnlineCasino.makeBet({
             accountId,
             mode: PlayMode.Lcg,
@@ -35,13 +37,6 @@ export const task1 = async () => {
         states.shift()
     }
 
-    if (states.length < 1) {
-        console.error('Failed to predict lcg next number')
-        return
-    }
-
-    console.log(states)
-    
     const lcg = new LCG(
         multiplier,
         increment,
@@ -49,18 +44,12 @@ export const task1 = async () => {
         states.pop()!
     )
 
-    let lastMessage = 'Empty message'
+    const solution = await collectionDesiredAmountOfMoney({
+        accountId,
+        mode: PlayMode.Lcg,
+        initialAmountOfMoney: amountOfMoney,
+        getNextNumber: () => Number(lcg.next())
+    })
 
-    while (amountOfMoney < desiredAmountOfMoney) {
-        const {message, account: {money}} = await OnlineCasino.makeBet({
-            accountId,
-            mode: PlayMode.Lcg,
-            money: Math.round(amountOfMoney / 2),
-            number: Number(lcg.next())
-        })
-        amountOfMoney = money
-        lastMessage = message
-    }
-
-    console.log(lastMessage)
+    await writeFile(path.join(__dirname, 'solution.txt'), solution)
 }
