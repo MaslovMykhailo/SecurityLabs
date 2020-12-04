@@ -2,7 +2,7 @@ import {mod, modinv} from '../utils'
 
 export class LCG {
 
-    private state: bigint
+    private last: bigint
 
     constructor(
         private multiplier: bigint,
@@ -13,12 +13,12 @@ export class LCG {
         this.multiplier = multiplier
         this.increment = increment
         this.modulus = modulus
-        this.state = seed
+        this.last = seed
     }
 
-    public next() {
-        this.state = mod(this.state * this.multiplier + this.increment, this.modulus)
-        return this.state
+    public getRandomNumber() {
+        this.last = mod(this.last * this.multiplier + this.increment, this.modulus)
+        return this.last
     }
 
 }

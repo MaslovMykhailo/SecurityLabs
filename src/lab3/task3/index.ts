@@ -27,7 +27,7 @@ export const task3 = async () => {
         accountId,
         mode: PlayMode.BetterMt,
         initialAmountOfMoney: amountOfMoney,
-        getNextNumber: () => mt.next()
+        getNextNumber: () => mt.getRandomNumber()
     })
 
     await writeFile(path.join(__dirname, 'solution.txt'), solution)

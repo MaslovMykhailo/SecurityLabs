@@ -26,7 +26,7 @@ export class MersenneTwister {
         }
     }
 
-    public next() {
+    public getRandomNumber() {
         let temp
       
         if (this.mtIndex >= MersenneTwister.N) {

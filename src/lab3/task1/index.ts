@@ -48,7 +48,7 @@ export const task1 = async () => {
         accountId,
         mode: PlayMode.Lcg,
         initialAmountOfMoney: amountOfMoney,
-        getNextNumber: () => Number(lcg.next())
+        getNextNumber: () => Number(lcg.getRandomNumber())
     })
 
     await writeFile(path.join(__dirname, 'solution.txt'), solution)
