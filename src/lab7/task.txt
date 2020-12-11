@@ -1,0 +1,26 @@
+link -> https://docs.google.com/document/d/1G6CmFKAU5BkpaF4zPTlYB-L8QBR-IEM6jMyDoy3iWPk
+
+7. TLS configuration
+
+The first team to write “я уже сделал все лабы” in chat will receive an additional +1 score.
+
+Add a TLS layer to your app or web-app. This task is pretty simple considering every modern web-framework has an easy to configure/use TLS support. You are free to use reverse proxy with TLS before your server instead of relying on framework-implementation.
+
+Part 1.
+1. Choose an appropriate TLS version for 2020.
+2. Choose an appropriate and secure enough ciphersuite(s) for your server.
+3. You may use self-signed certificates. If you like, you are welcome to use any CA-signed certs. But do not use automated tools like certbot unless you are familiar with how to configure everything manually. Upload all your configs and relevant code to public repository on github.
+
+You will be graded based on your configs and your report. In your report please describe with your own words:
+Why did you choose the ciphersuites/protocol versions/algorithms etc.
+Where does every component (keys, certificates) reside on your server.
+Be prepared to show every step of config at request.
+
+Part 2.
+This part is not graded! Not everyone has access to a public IP address or domain name. While you may do this part with a free aws/gcp/azure account, I believe this is out of scope of this course. The reason to put this part here is simple. Someone may be curious to try out the much simpler way of dealing with certificates and tls. Let me know if you have any feedback on this decision.
+
+Use an automated tool like certbot and let’s encrypt to provide your server with auto-renewable not self-signed certificates:
+Install a reverse proxy of your choice on your server. Let’s assume it’s nginx.
+Config your proxy to just proxy-pass all the traffic to your backend. E.g. you may configure your server to listen on port 1080, nginx on port 80 and configure the latter to pass all the traffic to port 1080.
+Install certbot on your server. Launch it, answer some questions and in a minute everything is ready to go.
+Check nginx configs: everything is the same would you manually configure it in part 1 of this task.
