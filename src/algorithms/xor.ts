@@ -29,3 +29,10 @@ export const decryptSingleByteXORCipher = (
         key: String.fromCharCode(byteKey),
         text: applySingleByteXORCipher(cipherText, byteKey)
     }))
+
+export const applyXOR = (
+    byteArray: number[],
+    keyByteArray: number[]
+) => byteArray.map(
+    (byte, index) => byte ^ keyByteArray[index % keyByteArray.length]
+)
