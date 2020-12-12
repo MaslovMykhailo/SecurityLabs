@@ -5,6 +5,7 @@ import {lab2} from './lab2'
 import {lab3} from './lab3'
 import {lab5} from './lab5'
 import {lab6} from './lab6'
+import {lab7} from './lab7'
 
 (async function main() {
     await Promise.all([
@@ -14,7 +15,8 @@ import {lab6} from './lab6'
         lab2(),
         lab3(),
         lab5(),
-        lab6()
+        lab6(),
+        lab7()
     ])
 })()
 

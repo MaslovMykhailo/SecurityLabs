@@ -1,1 +1,1 @@
-Solution lab5 can be found here -> https://github.com/maslovmichail20/SecureStorage
+Solution for lab5 can be found here -> https://github.com/maslovmichail20/SecureStorage
